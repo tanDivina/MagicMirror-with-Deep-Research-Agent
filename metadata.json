@@ -1,0 +1,8 @@
+{
+  "name": "Magic Mirror - Autonomous Creative Agency",
+  "description": "Magic Mirror: The Autonomous Creative Agency. Shoot with voice, remix with Gemini 3 Pro, and strategize with Deep Research agents. From bedroom to billboard in seconds.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
