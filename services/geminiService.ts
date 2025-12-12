@@ -136,6 +136,7 @@ export const generateMarketingImage = async (
     ${productPreservationPrompt}
 
     Product Integrity: ${posePrompt}
+    Constraint: Ensure the product appears exactly ONCE. Do not replicate or duplicate the product in the background.
     Subject: ${facePrompt}
     Context/Background: ${userPrompt}. ${locationPrompt}
     Style: ${stylePrompt}
@@ -195,6 +196,7 @@ export const generateVariantImage = async (
   base64Image: string,
   setting: string,
   angle: string,
+  aspectRatio: string = "3:4",
   customPrompt?: string,
   backgroundReferenceBase64?: string
 ): Promise<{ imageUrl: string }> => {
@@ -225,6 +227,7 @@ export const generateVariantImage = async (
     Product Photography Remix.
     Task: Composite the product from the main image into a new scene.
     Object: Keep the main object/product from the input image exactly as is. Preserve text and logos.
+    Constraint: Ensure the product appears exactly ONCE. Do not replicate or duplicate the product in the background.
     ${personInstruction}
     Camera Angle/Composition: ${angle}.
     Style: High resolution, photorealistic, advertising standard.
@@ -260,7 +263,7 @@ export const generateVariantImage = async (
                 parts: parts
             },
             config: {
-                imageConfig: { aspectRatio: "3:4", imageSize: "1K" }
+                imageConfig: { aspectRatio: aspectRatio, imageSize: "1K" }
             }
         });
         const img = extractImageFromResponse(response);
@@ -279,7 +282,7 @@ export const generateVariantImage = async (
                     parts: parts
                 },
                 config: {
-                    imageConfig: { aspectRatio: "3:4" }
+                    imageConfig: { aspectRatio: aspectRatio }
                 }
             });
             const img = extractImageFromResponse(response);
